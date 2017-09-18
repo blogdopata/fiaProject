@@ -1,0 +1,39 @@
+
+Steps para crear mi Workflow:
+
+npm init ---> llenar los datos config de mi proyecto
+npm install gulp --save-dev 
+npm install gulp-sass --save-dev 
+
+crear tu archivo gulpfile.js e indicar las variables necesarias
+para la realizacion de las tareas indicadas
+---------------------------------------------------------
+tarea 'sass'
+gulp.src('scss/app.scss') ----> indica el origen
+gulp.dest('app/css')); ----> Indica el destino  ( crear las carpetas necesarias ) 
+------------------------------------------------------------
+llamar la tarea  x default y en el array indicarle las tareas a correr
+gulp.task('default',['sass']);
+-------------------------------------------------------------
+Agregar Browser Sync 
+npm install browser-sync --save-dev
+primero ejecute la tarea de SASS,
+luego se le indica que archivos va  a estar atento :
+e indicar el base directory
+browserSync.init(["app/css/*.css", "app/js/*.js","app/*.html"], {
+			server:{
+				baseDir:'app'
+			}
+		})
+-------------------------------------------------------------
+Agregando el watch - para estar pendiente del scss
+
+ gulp.task('watch',['sass',"serve"],function(){
+	gulp.watch(['scss/*.scss'], ['sass']);
+});
+--------------------------------------------------------------
+Agregando autoPrefixer
+npm install gulp-autoprefixer --save-dev
+
+
+
